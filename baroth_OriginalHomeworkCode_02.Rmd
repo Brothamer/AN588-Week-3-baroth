@@ -1,0 +1,14 @@
+---
+title: "baroth_OriginalHomeworkCode_02"
+author: "Brooke Rothamer"
+date: "2023-09-28"
+output: 
+  prettydoc::html_pretty:
+    theme: cayman
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
