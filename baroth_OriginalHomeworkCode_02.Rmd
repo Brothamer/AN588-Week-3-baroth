@@ -13,16 +13,73 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 # Homework 02: Titis in the Mist…
 
-Every Saturday morning, at the same time, a primatologist goes and sits in the forest to listen for titi monkey calls, counting the number of calls they hear in a 2 hour window from 5am to 7am. Based on previous knowledge, she believes that the mean number of calls she will hear in that time is exactly 15. Let X represent the appropriate Poisson random variable of the number of calls heard in each monitoring session.
+```{r echo=FALSE, out.width = "30%", fig.align = "center"}
+knitr::include_graphics("C:/Users/brook/OneDrive/Documents/2023_Fall/AN588/AN588-Week-3-baroth/titis.jpg")
+```
+
+Every Saturday morning, at the same time, a primatologist goes and sits in the forest to listen for titi monkey calls, counting the number of calls they hear in a 2 hour window from 5am to 7am. Based on previous knowledge, she believes that the **mean number of calls she will hear in that time is exactly 15**. Let X represent the appropriate Poisson random variable of the number of calls heard in each monitoring session.
+
+* Use a Poisson function because we are modeling the number of counts based only on an expected mean.
 
 ## What is the probability that she will hear more than 8 calls during any given session?
 
+* Use the ppois() function to get a cumulative probability for all numbers of calls up to 8 calls.
+* Use 1 - ppois() to get the cumulative probability of more than 8 rather than less than 8.
+```{r more than 8}
+over8 <- 1- ppois(q = 8, lambda = 15) #q is the number of calls we want to know about #lambda is the expected mean
+over8
+```
 ## What is the probability that she will hear no calls in a session?
 
+* Use dpois() to get the probability of an exact number of calls (0).
+```{r no calls}
+nocalls <- dpois(x = 0, lambda = 15) #x is the number of calls we want to know about #lambda is the expected mean
+nocalls
+```
 ## What is the probability that she will hear exactly 3 calls in a session?
 
+* Use dpois() to get the probability of an exact number of calls (3).
+```{r exactly 3}
+exactly3 <- dpois(x = 3, lambda = 15) #x is the number of calls we want to know about #lambda is the expected mean
+exactly3
+```
 ## Plot the relevant Poisson mass function over the values in range 0 ≤ x ≤ 30.
+
+* Use dpois to plot the probability of each number of calls for all integers 0 though 30.
+```{r plot}
+plot <- dpois(x = 0:30, lambda = 15)
+barplot(plot, names.arg = 0:30, space = 0, 
+        xlab = "Number of calls", ylab = "Probability of # of calls observed", 
+        main = "Titi Calls: Poisson Mass Function")
+```
 
 ## Simulate 104 results from this distribution (i.e., 2 years of Saturday monitoring sessions).
 
+* Use rpois() to similate random numbers using a Poisson mass function
+```{r simulate}
+set.seed(24) # Set seed for random number generation so it runs the same random numbers every time
+#Can be any number; I like 24
+  
+N <- 104 # Set sample size for number of results
+  
+simulated <- rpois(N, lambda = 15) # Calling rpois() Function and setting the expected mean to 15
+simulated
+```
+
 ## Plot the simulated results using hist() and use xlim() to set the horizontal limits to be from 0 to 30. How does your histogram compare to the shape of the probability mass function you plotted above?
+
+```{r plot simulate}
+simulatedplot <- hist(simulated, xlim = range(0:30), ylim = range(0:30), 
+                      xlab = "Number of calls", ylab = "Counts of # of calls observed", 
+                      main = "Titi Calls: Poison Simulation Histogram")
+```
+
+It is difficult to compare because the probability mass function uses probabilities on the y-axis and the histogram uses counts on the y-axis. The plots look similar with the highest density occurring at or just under 15. The sample size of 104 may be small because the histogram has a less smooth appearance, particularly with there being less instances of 15 calls than 
+
+## Five challenges in completing this assignment.
+
+1. First of all, I panicked and my mind went blank of everything about all the different mass functions are supposed to represent or how to use them. I can't remember what Sam said, but she said something that made it all click back into place.
+2. I had to remember that ppois() uses q where dpois() uses x in the arguments. Before that, i was getting an error in running ppois().
+3. Looking back over the modules, I could not remember or find how to simulate random numbers from a probability function. I googled it and found a solution at [GeeksforGeeks](https://www.geeksforgeeks.org/compute-randomly-drawn-poisson-density-in-r-programming-rpois-function/).
+4. My histogram is measuring the x-axis as number of counts and I want to figure out how to make it display relative frequency. I tried a couple alternatives but they did relative frequency as percent which wasn't necessarily what I wanted. Also they used functions other than hist(), and I wasn't sure if usign hist() was a requirement.
+5. My histogram is putting the x-axis values in buckets of 2 and I wish it wouldn't and I need to figure out how to fix that.
