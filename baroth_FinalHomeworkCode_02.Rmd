@@ -76,9 +76,7 @@ simulatedplot <- hist(simulated, freq = FALSE, xlim = range(0:30),
                       xlab = "Number of calls", ylab = "Relative frequency", 
                       main = "Titi Calls: Poison Simulation Histogram")
 ```
-
-It is difficult to compare because the probability mass function uses probabilities on the y-axis and the histogram uses counts on the y-axis. The plots look similar with the highest density occurring at or just under 15. The sample size of 104 may be small because the histogram has a less smooth appearance, particularly with there being less instances of 15 calls than 
-<!-- I think you can still visually compare these graphs because its showing you how many of each mean was chosen in 104 picks (years) -->
+The plots look similar with the highest density occurring at or just under 15. The sample size of 104 may be small because the histogram has a less smooth appearance, particularly with there being less instances of 15 calls than 
 
 # Five challenges in completing this assignment.
 
@@ -92,7 +90,9 @@ It is difficult to compare because the probability mass function uses probabilit
 
 1. I learned how to caption my image. I also tried, as Paige recommended, to link it to the image in my github instead of the file on my computer, but then the image didn't work,
 2. I learned that in the first question, I need to make sure to subtract the probability of getting 8 since the question only asks for the probability of getting more than 8.
-3. While reviewing Amanda's code, I realized that she and I had interpretted the output of the histogram differently (frequency/counts vs relative frequency/probability). This helped me figure out how to change my histogram, by adding the freq = FALSE argument, to show probability so that it is more directly comparable to the barplot.
+3. While reviewing Amanda's code, I realized that she and I had interpreted the output of the histogram differently (frequency/counts vs relative frequency/probability). This helped me figure out how to change my histogram, by adding the freq = FALSE argument, to show probability so that it is more directly comparable to the barplot.
 
 # Two things I like in my peers' work
 
+1. Paige's annotations of how to answer question 1 were clear and useful.
+2. Amanda's use of the upper.tri argument was a good reminder that that is another option.
